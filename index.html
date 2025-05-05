@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>🇵🇬Yumi1tok Culture & Beauty🇵🇬</title>
+<style>
+  /* Styles trimmed for brevity */
+</style>
+</head>
+<body>
+<header>
+  <h1>🇵🇬Yumi1tok Culture & Beauty🇵🇬</h1>
+  <nav>
+    <a href="#culture">Culture & Beauty</a>
+    <a href="#files">Free Net Files</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+<section id="culture">
+  <h2>Culture & Beauty</h2>
+  <p>Explore the rich and diverse culture and natural beauty of Papua New Guinea through images and stories.</p>
+  <div class="culture-gallery">
+    <div class="culture-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Mendi_Market_PNG.jpg" alt="Mendi Market" />
+      <p>Traditional market in Mendi showcasing local crafts and produce.</p>
+    </div>
+    <div class="culture-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/Trobriand_Islands_Boat.jpg" alt="Trobriand Islands" />
+      <p>Colorful canoes on the Trobriand Islands, a place of vibrant culture.</p>
+    </div>
+    <div class="culture-item">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/PNG_Huli_Dancers.jpg" alt="Huli Dancers" />
+      <p>Huli dancers in traditional dress performing a cultural ceremony.</p>
+    </div>
+  </div>
+</section>
+<section id="files">
+  <h2>Free Net Files</h2>
+  <p>Browse and download music, movies, and other files from 🇵🇬Yumi1tok Free Net🇵🇬.</p>
+  <div id="file-controls">
+    <input type="text" id="file-search" placeholder="Search files..." />
+    <select id="file-filter">
+      <option value="all">All Categories</option>
+      <option value="music">Music</option>
+      <option value="movies">Movies</option>
+      <option value="other">Other</option>
+    </select>
+  </div>
+  <ul id="file-list"></ul>
+</section>
+<section id="about">
+  <h2>About</h2>
+  <p>🇵🇬Yumi1tok Culture & Beauty🇵🇬 is dedicated to celebrating the unique heritage and natural wonders of Papua New Guinea, while providing a platform for sharing free and legal digital content through 🇵🇬Yumi1tok Free Net🇵🇬.</p>
+</section>
+<section id="contact">
+  <h2>Contact</h2>
+  <form id="contact-form" onsubmit="return false;">
+    <label for="name">Name</label>
+    <input type="text" id="name" required />
+    <label for="email">Email</label>
+    <input type="email" id="email" required />
+    <label for="message">Message</label>
+    <textarea id="message" rows="5" required></textarea>
+    <button type="submit" onclick="submitContactForm()">Send</button>
+  </form>
+</section>
+<script>
+  const files = [
+    { name: "PNG Traditional Music Vol.1.mp3", category: "music", url: "#" },
+    { name: "Island Documentary.mp4", category: "movies", url: "#" },
+    { name: "Free Net Guide.pdf", category: "other", url: "#" },
+    { name: "Huli Dance Performance.mp3", category: "music", url: "#" },
+    { name: "Nature of PNG.mov", category: "movies", url: "#" },
+    { name: "Internet Hacks Collection.zip", category: "other", url: "#" }
+  ];
+
+  const fileListEl = document.getElementById('file-list');
+  const searchInput = document.getElementById('file-search');
+  const filterSelect = document.getElementById('file-filter');
+
+  function renderFiles() {
+    const search = searchInput.value.toLowerCase();
+    const filter = filterSelect.value;
+
+    const filteredFiles = files.filter(file => {
+      const matchesCategory = (filter === 'all' || file.category === filter);
+      const matchesSearch = file.name.toLowerCase().includes(search);
+      return matchesCategory && matchesSearch;
+    });
+
+    fileListEl.innerHTML = '';
+    if (filteredFiles.length === 0) {
+      fileListEl.innerHTML = '<li>No files found.</li>';
+    } else {
+      filteredFiles.forEach(file => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${file.name}</span>
+          <a href="${file.url}" download>Download</a>
+        `;
+        fileListEl.appendChild(li);
+      });
+    }
+  }
+
+  searchInput.addEventListener('input', renderFiles);
+  filterSelect.addEventListener('change', renderFiles);
+  renderFiles();
+
+  function submitContactForm() {
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    if (name && email && message) {
+      alert("Thank you for contacting us, " + name + "! We'll get back to you soon.");
+      document.getElementById('contact-form').reset();
+    } else {
+      alert("Please fill in all fields.");
+    }
+  }
+</script>
+</body>
+</html>
